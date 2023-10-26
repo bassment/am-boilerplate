@@ -1,0 +1,15 @@
+{
+  "name": "bam-service",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/bam-service",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "nx:run-script",
+      "outputs": [],
+      "options": {
+        "script": "start"
+      }
+    }
+  }
+}

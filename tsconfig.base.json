@@ -1,0 +1,26 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@am/design-system": ["libs/design-system/src/index.ts"],
+      "@am/shared": ["libs/shared/src/index.ts"],
+      "@am/types": ["libs/types/src/index.ts"],
+      "@am/workspace-plugin": ["tools/workspace-plugin/src/index.ts"],
+      "react": ["./node_modules/@types/react"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

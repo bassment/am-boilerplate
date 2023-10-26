@@ -1,0 +1,230 @@
+{
+  "name": "am-host",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/am-host/src",
+  "implicitDependencies": ["authorization-mf", "account-mf", "generic-mf"],
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "development",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/am-host/browser",
+        "index": "apps/am-host/src/index.html",
+        "baseHref": "/",
+        "main": "apps/am-host/src/main.ts",
+        "polyfills": "apps/am-host/src/polyfills.ts",
+        "tsConfig": "apps/am-host/tsconfig.app.json",
+        "assets": ["apps/am-host/src/favicon.ico", "apps/am-host/src/assets"],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "apps/am-host/webpack.config.js",
+        "isolatedConfig": true,
+        "generatePackageJson": true
+      },
+      "configurations": {
+        "local:kubernetes": {
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "webpackConfig": "apps/am-host/webpack.config.prod.js"
+        },
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "stage": {
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "webpackConfig": "apps/am-host/webpack.config.prod.js",
+          "fileReplacements": [
+            {
+              "replace": "apps/am-host/src/environments/environment.ts",
+              "with": "apps/am-host/src/environments/environment.stage.ts"
+            }
+          ]
+        },
+        "production": {
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "webpackConfig": "apps/am-host/webpack.config.prod.js",
+          "fileReplacements": [
+            {
+              "replace": "apps/am-host/src/environments/environment.ts",
+              "with": "apps/am-host/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/react:module-federation-ssr-dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "browserTarget": "am-host:build:development",
+        "serverTarget": "am-host:serve-server:development",
+        "port": 4200,
+        "browserTargetOptions": {
+          "watch": true
+        }
+      },
+      "configurations": {
+        "development": {
+          "envFile": "apps/am-host/.env"
+        },
+        "stage": {
+          "envFile": "apps/am-host/.env",
+          "browserTarget": "am-host:build:stage",
+          "serverTarget": "am-host:serve-server:stage"
+        },
+        "production": {
+          "envFile": "apps/am-host/.env",
+          "browserTarget": "am-host:build:production",
+          "serverTarget": "am-host:serve-server:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/am-host/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/am-host/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "am-host:build",
+        "port": 4200
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "am-host:build:development"
+        },
+        "stage": {
+          "buildTarget": "am-host:build:stage"
+        },
+        "production": {
+          "buildTarget": "am-host:build:production"
+        }
+      }
+    },
+    "server": {
+      "dependsOn": ["build"],
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "main": "apps/am-host/server.ts",
+        "outputPath": "dist/apps/am-host/server",
+        "tsConfig": "apps/am-host/tsconfig.server.json",
+        "compiler": "babel",
+        "externalDependencies": "all",
+        "outputHashing": "none",
+        "isolatedConfig": true,
+        "webpackConfig": "apps/am-host/webpack.server.config.js",
+        "generatePackageJson": true
+      },
+      "configurations": {
+        "local:kubernetes": {
+          "main": "apps/am-host/server.prod.ts",
+          "webpackConfig": "apps/am-host/webpack.server.prod.config.js",
+          "sourceMap": false
+        },
+        "development": {
+          "optimization": false,
+          "sourceMap": true
+        },
+        "stage": {
+          "main": "apps/am-host/server.prod.ts",
+          "webpackConfig": "apps/am-host/webpack.server.prod.config.js",
+          "fileReplacements": [
+            {
+              "replace": "apps/am-host/src/environments/environment.ts",
+              "with": "apps/am-host/src/environments/environment.stage.ts"
+            }
+          ],
+          "sourceMap": false
+        },
+        "production": {
+          "main": "apps/am-host/server.prod.ts",
+          "webpackConfig": "apps/am-host/webpack.server.prod.config.js",
+          "fileReplacements": [
+            {
+              "replace": "apps/am-host/src/environments/environment.ts",
+              "with": "apps/am-host/src/environments/environment.prod.ts"
+            }
+          ],
+          "sourceMap": false
+        }
+      }
+    },
+    "serve-browser": {
+      "executor": "@nx/react:module-federation-dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "am-host:build",
+        "hmr": true,
+        "port": 4200
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "am-host:build:development"
+        },
+        "stage": {
+          "buildTarget": "am-host:build:stage",
+          "hmr": false
+        },
+        "production": {
+          "buildTarget": "am-host:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "serve-server": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "am-host:server:development",
+        "buildTargetOptions": {
+          "watch": true
+        }
+      },
+      "configurations": {
+        "development": {},
+        "stage": {
+          "buildTarget": "am-host:server:stage"
+        },
+        "production": {
+          "buildTarget": "am-host:server:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}

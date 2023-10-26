@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "node-red": {
+      "implementation": "./src/generators/node-red",
+      "schema": "./src/generators/node-red/schema.json",
+      "description": "Generator node-red"
+    }
+  }
+}

@@ -1,0 +1,252 @@
+{
+  "name": "authorization-mf",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/authorization-mf/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "development",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/authorization-mf/browser",
+        "index": "apps/authorization-mf/src/index.html",
+        "baseHref": "/authorization-mf",
+        "main": "apps/authorization-mf/src/main.ts",
+        "polyfills": "apps/authorization-mf/src/polyfills.ts",
+        "tsConfig": "apps/authorization-mf/tsconfig.app.json",
+        "assets": [
+          "apps/authorization-mf/src/favicon.ico",
+          "apps/authorization-mf/src/assets"
+        ],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "apps/authorization-mf/webpack.config.js",
+        "isolatedConfig": true,
+        "babelUpwardRootMode": true
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "stage": {
+          "fileReplacements": [
+            {
+              "replace": "apps/authorization-mf/src/environments/environment.ts",
+              "with": "apps/authorization-mf/src/environments/environment.stage.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "webpackConfig": "apps/authorization-mf/webpack.config.prod.js"
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/authorization-mf/src/environments/environment.ts",
+              "with": "apps/authorization-mf/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "webpackConfig": "apps/authorization-mf/webpack.config.prod.js"
+        }
+      },
+      "stage": {
+        "fileReplacements": [
+          {
+            "replace": "apps/authorization-mf/src/environments/environment.ts",
+            "with": "apps/authorization-mf/src/environments/environment.stage.ts"
+          }
+        ],
+        "optimization": true,
+        "outputHashing": "all",
+        "sourceMap": false,
+        "namedChunks": false,
+        "extractLicenses": true,
+        "vendorChunk": false,
+        "webpackConfig": "apps/authorization-mf/webpack.config.prod.js",
+        "isolatedConfig": true
+      },
+      "production": {
+        "fileReplacements": [
+          {
+            "replace": "apps/authorization-mf/src/environments/environment.ts",
+            "with": "apps/authorization-mf/src/environments/environment.prod.ts"
+          }
+        ],
+        "optimization": true,
+        "outputHashing": "all",
+        "sourceMap": false,
+        "namedChunks": false,
+        "extractLicenses": true,
+        "vendorChunk": false,
+        "webpackConfig": "apps/authorization-mf/webpack.config.prod.js",
+        "isolatedConfig": true
+      }
+    },
+    "serve": {
+      "executor": "@nx/webpack:ssr-dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "browserTarget": "authorization-mf:build:development",
+        "serverTarget": "authorization-mf:serve-server:development",
+        "port": 4202,
+        "browserTargetOptions": {
+          "watch": true
+        }
+      },
+      "configurations": {
+        "alone": {
+          "serverTarget": "authorization-mf:serve-server-alone:development"
+        },
+        "development": {},
+        "stage": {
+          "browserTarget": "authorization-mf:build:stage",
+          "serverTarget": "authorization-mf:serve-server:stage"
+        },
+        "production": {
+          "browserTarget": "authorization-mf:build:production",
+          "serverTarget": "authorization-mf:serve-server:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/authorization-mf/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/authorization-mf/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "serve-static": {
+      "dependsOn": ["build", "server"],
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "development",
+      "options": {
+        "command": "PORT=4202 node dist/apps/authorization-mf/server/main.js"
+      }
+    },
+    "server": {
+      "dependsOn": ["build"],
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "development",
+      "options": {
+        "target": "node",
+        "main": "apps/authorization-mf/server.ts",
+        "outputPath": "dist/apps/authorization-mf/server",
+        "tsConfig": "apps/authorization-mf/tsconfig.server.json",
+        "compiler": "babel",
+        "externalDependencies": "all",
+        "outputHashing": "none",
+        "webpackConfig": "apps/authorization-mf/webpack.server.config.js",
+        "isolatedConfig": true,
+        "babelUpwardRootMode": true,
+        "generatePackageJson": true
+      },
+      "configurations": {
+        "development": {
+          "optimization": false,
+          "sourceMap": true
+        },
+        "local:kubernetes": {
+          "main": "apps/authorization-mf/server.prod.ts",
+          "sourceMap": false
+        },
+        "stage": {
+          "main": "apps/authorization-mf/server.prod.ts",
+          "fileReplacements": [
+            {
+              "replace": "apps/authorization-mf/src/environments/environment.ts",
+              "with": "apps/authorization-mf/src/environments/environment.stage.ts"
+            }
+          ],
+          "sourceMap": false
+        },
+        "production": {
+          "main": "apps/authorization-mf/server.prod.ts",
+          "fileReplacements": [
+            {
+              "replace": "apps/authorization-mf/src/environments/environment.ts",
+              "with": "apps/authorization-mf/src/environments/environment.prod.ts"
+            }
+          ],
+          "sourceMap": false
+        }
+      }
+    },
+    "serve-browser": {
+      "executor": "@nx/react:module-federation-dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "authorization-mf:build",
+        "hmr": false,
+        "port": 4202
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "authorization-mf:build:development"
+        },
+        "stage": {
+          "buildTarget": "authorization-mf:build:stage",
+          "hmr": false
+        },
+        "production": {
+          "buildTarget": "authorization-mf:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "serve-server": {
+      "executor": "@nrwl/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4202,
+        "buildTarget": "authorization-mf:server:development",
+        "buildTargetOptions": {
+          "watch": true
+        }
+      },
+      "configurations": {
+        "development": {},
+        "stage": {
+          "buildTarget": "authorization-mf:server:stage"
+        },
+        "production": {
+          "buildTarget": "authorization-mf:server:production"
+        }
+      }
+    },
+    "serve-server-alone": {
+      "executor": "@nrwl/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "authorization-mf:server:development",
+        "buildTargetOptions": {
+          "watch": true
+        }
+      }
+    }
+  },
+  "tags": []
+}
