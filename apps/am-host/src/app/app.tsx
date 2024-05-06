@@ -5,7 +5,7 @@ import {
   RouteObject,
   useLoaderData,
 } from 'react-router-dom';
-import { GenericPage, AuthorizationPage, AccountPage } from '../routes';
+import { LandingsPage, AuthorizationPage, AccountPage } from '../routes';
 
 export type MainContextLoaderData = {
   testData: string;
@@ -35,11 +35,11 @@ export const routes: RouteObject[] = [
     children: [
       {
         index: true,
-        element: <GenericPage type="home" />,
+        element: <LandingsPage type="home" />,
       },
       {
         path: 'details',
-        element: <GenericPage type="details" />,
+        element: <LandingsPage type="details" />,
       },
       {
         path: 'signin',

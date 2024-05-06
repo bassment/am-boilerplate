@@ -2,7 +2,7 @@
   "name": "am-host",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/am-host/src",
-  "implicitDependencies": ["authorization-mf", "account-mf", "generic-mf"],
+  "implicitDependencies": ["authorization-mf", "account-mf", "landings-mf"],
   "projectType": "application",
   "targets": {
     "build": {

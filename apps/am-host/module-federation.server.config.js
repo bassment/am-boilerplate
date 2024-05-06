@@ -5,7 +5,7 @@
  **/
 const moduleFederationConfig = {
   name: 'am-host',
-  remotes: ['generic-mf', 'authorization-mf', 'account-mf'],
+  remotes: ['landings-mf', 'authorization-mf', 'account-mf'],
 };
 
 module.exports = moduleFederationConfig;

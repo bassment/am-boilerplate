@@ -1,5 +1,5 @@
-import GenericPage from './GenericPage';
+import LandingsPage from './LandingsPage';
 import AuthorizationPage from './AuthorizationPage';
 import AccountPage from './AccountPage';
 
-export { GenericPage, AuthorizationPage, AccountPage };
+export { LandingsPage, AuthorizationPage, AccountPage };

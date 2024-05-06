@@ -1,7 +1,7 @@
 {
-  "name": "generic-mf",
+  "name": "landings-mf",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/generic-mf/src",
+  "sourceRoot": "apps/landings-mf/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -10,19 +10,19 @@
       "defaultConfiguration": "development",
       "options": {
         "compiler": "babel",
-        "outputPath": "dist/apps/generic-mf/browser",
-        "index": "apps/generic-mf/src/index.html",
+        "outputPath": "dist/apps/landings-mf/browser",
+        "index": "apps/landings-mf/src/index.html",
         "baseHref": "/",
-        "main": "apps/generic-mf/src/main.ts",
-        "polyfills": "apps/generic-mf/src/polyfills.ts",
-        "tsConfig": "apps/generic-mf/tsconfig.app.json",
+        "main": "apps/landings-mf/src/main.ts",
+        "polyfills": "apps/landings-mf/src/polyfills.ts",
+        "tsConfig": "apps/landings-mf/tsconfig.app.json",
         "assets": [
-          "apps/generic-mf/src/favicon.ico",
-          "apps/generic-mf/src/assets"
+          "apps/landings-mf/src/favicon.ico",
+          "apps/landings-mf/src/assets"
         ],
         "styles": [],
         "scripts": [],
-        "webpackConfig": "apps/generic-mf/webpack.config.js",
+        "webpackConfig": "apps/landings-mf/webpack.config.js",
         "isolatedConfig": true,
         "babelUpwardRootMode": true
       },
@@ -36,8 +36,8 @@
         "stage": {
           "fileReplacements": [
             {
-              "replace": "apps/generic-mf/src/environments/environment.ts",
-              "with": "apps/generic-mf/src/environments/environment.stage.ts"
+              "replace": "apps/landings-mf/src/environments/environment.ts",
+              "with": "apps/landings-mf/src/environments/environment.stage.ts"
             }
           ],
           "optimization": true,
@@ -46,13 +46,13 @@
           "namedChunks": false,
           "extractLicenses": true,
           "vendorChunk": false,
-          "webpackConfig": "apps/generic-mf/webpack.config.prod.js"
+          "webpackConfig": "apps/landings-mf/webpack.config.prod.js"
         },
         "production": {
           "fileReplacements": [
             {
-              "replace": "apps/generic-mf/src/environments/environment.ts",
-              "with": "apps/generic-mf/src/environments/environment.prod.ts"
+              "replace": "apps/landings-mf/src/environments/environment.ts",
+              "with": "apps/landings-mf/src/environments/environment.prod.ts"
             }
           ],
           "optimization": true,
@@ -61,14 +61,14 @@
           "namedChunks": false,
           "extractLicenses": true,
           "vendorChunk": false,
-          "webpackConfig": "apps/generic-mf/webpack.config.prod.js"
+          "webpackConfig": "apps/landings-mf/webpack.config.prod.js"
         }
       },
       "stage": {
         "fileReplacements": [
           {
-            "replace": "apps/generic-mf/src/environments/environment.ts",
-            "with": "apps/generic-mf/src/environments/environment.stage.ts"
+            "replace": "apps/landings-mf/src/environments/environment.ts",
+            "with": "apps/landings-mf/src/environments/environment.stage.ts"
           }
         ],
         "optimization": true,
@@ -77,14 +77,14 @@
         "namedChunks": false,
         "extractLicenses": true,
         "vendorChunk": false,
-        "webpackConfig": "apps/generic-mf/webpack.config.prod.js",
+        "webpackConfig": "apps/landings-mf/webpack.config.prod.js",
         "isolatedConfig": true
       },
       "production": {
         "fileReplacements": [
           {
-            "replace": "apps/generic-mf/src/environments/environment.ts",
-            "with": "apps/generic-mf/src/environments/environment.prod.ts"
+            "replace": "apps/landings-mf/src/environments/environment.ts",
+            "with": "apps/landings-mf/src/environments/environment.prod.ts"
           }
         ],
         "optimization": true,
@@ -93,7 +93,7 @@
         "namedChunks": false,
         "extractLicenses": true,
         "vendorChunk": false,
-        "webpackConfig": "apps/generic-mf/webpack.config.prod.js",
+        "webpackConfig": "apps/landings-mf/webpack.config.prod.js",
         "isolatedConfig": true
       }
     },
@@ -101,8 +101,8 @@
       "executor": "@nx/webpack:ssr-dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "browserTarget": "generic-mf:build:development",
-        "serverTarget": "generic-mf:serve-server:development",
+        "browserTarget": "landings-mf:build:development",
+        "serverTarget": "landings-mf:serve-server:development",
         "port": 4201,
         "browserTargetOptions": {
           "watch": true
@@ -110,16 +110,16 @@
       },
       "configurations": {
         "alone": {
-          "serverTarget": "generic-mf:serve-server-alone:development"
+          "serverTarget": "landings-mf:serve-server-alone:development"
         },
         "development": {},
         "stage": {
-          "browserTarget": "generic-mf:build:stage",
-          "serverTarget": "generic-mf:serve-server:stage"
+          "browserTarget": "landings-mf:build:stage",
+          "serverTarget": "landings-mf:serve-server:stage"
         },
         "production": {
-          "browserTarget": "generic-mf:build:production",
-          "serverTarget": "generic-mf:serve-server:production"
+          "browserTarget": "landings-mf:build:production",
+          "serverTarget": "landings-mf:serve-server:production"
         }
       }
     },
@@ -127,14 +127,14 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/generic-mf/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/landings-mf/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/generic-mf/jest.config.ts",
+        "jestConfig": "apps/landings-mf/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -143,7 +143,7 @@
       "executor": "nx:run-commands",
       "defaultConfiguration": "development",
       "options": {
-        "command": "PORT=4201 node dist/apps/generic-mf/server/main.js"
+        "command": "PORT=4201 node dist/apps/landings-mf/server/main.js"
       }
     },
     "server": {
@@ -153,20 +153,20 @@
       "defaultConfiguration": "development",
       "options": {
         "target": "node",
-        "main": "apps/generic-mf/server.ts",
-        "outputPath": "dist/apps/generic-mf/server",
-        "tsConfig": "apps/generic-mf/tsconfig.server.json",
+        "main": "apps/landings-mf/server.ts",
+        "outputPath": "dist/apps/landings-mf/server",
+        "tsConfig": "apps/landings-mf/tsconfig.server.json",
         "compiler": "babel",
         "externalDependencies": "all",
         "outputHashing": "none",
-        "webpackConfig": "apps/generic-mf/webpack.server.config.js",
+        "webpackConfig": "apps/landings-mf/webpack.server.config.js",
         "isolatedConfig": true,
         "babelUpwardRootMode": true,
         "generatePackageJson": true
       },
       "configurations": {
         "local:kubernetes": {
-          "main": "apps/generic-mf/server.prod.ts",
+          "main": "apps/landings-mf/server.prod.ts",
           "sourceMap": false
         },
         "development": {
@@ -174,21 +174,21 @@
           "sourceMap": true
         },
         "stage": {
-          "main": "apps/generic-mf/server.prod.ts",
+          "main": "apps/landings-mf/server.prod.ts",
           "fileReplacements": [
             {
-              "replace": "apps/generic-mf/src/environments/environment.ts",
-              "with": "apps/generic-mf/src/environments/environment.stage.ts"
+              "replace": "apps/landings-mf/src/environments/environment.ts",
+              "with": "apps/landings-mf/src/environments/environment.stage.ts"
             }
           ],
           "sourceMap": false
         },
         "production": {
-          "main": "apps/generic-mf/server.prod.ts",
+          "main": "apps/landings-mf/server.prod.ts",
           "fileReplacements": [
             {
-              "replace": "apps/generic-mf/src/environments/environment.ts",
-              "with": "apps/generic-mf/src/environments/environment.prod.ts"
+              "replace": "apps/landings-mf/src/environments/environment.ts",
+              "with": "apps/landings-mf/src/environments/environment.prod.ts"
             }
           ],
           "sourceMap": false
@@ -199,20 +199,20 @@
       "executor": "@nx/react:module-federation-dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "generic-mf:build",
+        "buildTarget": "landings-mf:build",
         "hmr": false,
         "port": 4201
       },
       "configurations": {
         "development": {
-          "buildTarget": "generic-mf:build:development"
+          "buildTarget": "landings-mf:build:development"
         },
         "stage": {
-          "buildTarget": "generic-mf:build:stage",
+          "buildTarget": "landings-mf:build:stage",
           "hmr": false
         },
         "production": {
-          "buildTarget": "generic-mf:build:production",
+          "buildTarget": "landings-mf:build:production",
           "hmr": false
         }
       }
@@ -222,7 +222,7 @@
       "defaultConfiguration": "development",
       "options": {
         "port": 4201,
-        "buildTarget": "generic-mf:server:development",
+        "buildTarget": "landings-mf:server:development",
         "buildTargetOptions": {
           "watch": true
         }
@@ -230,10 +230,10 @@
       "configurations": {
         "development": {},
         "stage": {
-          "buildTarget": "generic-mf:server:stage"
+          "buildTarget": "landings-mf:server:stage"
         },
         "production": {
-          "buildTarget": "generic-mf:server:production"
+          "buildTarget": "landings-mf:server:production"
         }
       }
     },
@@ -241,7 +241,7 @@
       "executor": "@nrwl/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "generic-mf:server:development",
+        "buildTarget": "landings-mf:server:development",
         "buildTargetOptions": {
           "watch": true
         }

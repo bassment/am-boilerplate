@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'generic-mf',
+  displayName: 'landings-mf',
   preset: '../../jest.preset.js',
   transform: {
     '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nx/react/plugins/jest',

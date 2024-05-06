@@ -1,14 +1,14 @@
 import HomePage from '../HomePage';
 import DetailsPage from '../DetailsPage';
-import { GenericPageType } from '@am/types';
+import { LandingsPageType } from '@am/types';
 import { Typography } from '@am/design-system';
 
-export interface GenericRoutesProps {
-  type: GenericPageType | undefined;
+export interface LandingsRoutesProps {
+  type: LandingsPageType | undefined;
   testData?: string;
 }
 
-export function GenericRoutes({ type, testData }: GenericRoutesProps) {
+export function LandingsRoutes({ type, testData }: LandingsRoutesProps) {
   return (
     <>
       {type === 'home' && <HomePage />}
@@ -18,4 +18,4 @@ export function GenericRoutes({ type, testData }: GenericRoutesProps) {
   );
 }
 
-export default GenericRoutes;
+export default LandingsRoutes;

@@ -7,7 +7,7 @@ const baseConfig = require('./module-federation.config');
 const {
   AUTHORIZATION_MF_SERVER_BASE_URL,
   ACCOUNT_MF_SERVER_BASE_URL,
-  GENERIC_MF_SERVER_BASE_URL,
+  LANDINGS_MF_SERVER_BASE_URL,
 } = process.env;
 
 const defaultConfig = {
@@ -15,7 +15,7 @@ const defaultConfig = {
   remotes: [
     ['authorization', AUTHORIZATION_MF_SERVER_BASE_URL],
     ['myaccount', ACCOUNT_MF_SERVER_BASE_URL],
-    ['generic', GENERIC_MF_SERVER_BASE_URL],
+    ['landings', LANDINGS_MF_SERVER_BASE_URL],
   ],
 };
 

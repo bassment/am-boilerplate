@@ -7,7 +7,7 @@ import { useNotification } from '@am/shared';
 export const AccountPage = () => {
   const { t } = useTranslation();
   const notifictions = useNotification();
-  const accountNotification: NotificationEventType = 'USER_DELETED';
+  const accountNotification: NotificationEventType = 'PASSWORD_CHANGED';
 
   console.log('Account MF APP', notifictions, accountNotification);
 

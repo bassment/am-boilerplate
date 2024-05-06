@@ -5,8 +5,8 @@ import {
   LayoutWithNavigation,
 } from '@am/shared';
 import { config, createTheme, ThemeProvider } from '@am/design-system';
-import { GenericPageType } from '@am/types';
-import { GenericRoutes } from '../routes';
+import { LandingsPageType } from '@am/types';
+import { LandingsRoutes } from '../routes';
 import React from 'react';
 import {
   LoaderFunctionArgs,
@@ -19,15 +19,15 @@ import {
 const theme = createTheme(config.amTheme);
 
 export interface AppProps {
-  type?: GenericPageType;
+  type?: LandingsPageType;
   testData?: string;
 }
 
 export const App = ({ type: initialType, testData }: AppProps) => {
-  const [type, setType] = useState<GenericPageType | undefined>(initialType);
+  const [type, setType] = useState<LandingsPageType | undefined>(initialType);
   const location = useLocation();
 
-  const handleGenericPageTypeChange = useCallback((e: Event) => {
+  const handleLandingsPageTypeChange = useCallback((e: Event) => {
     const type = (e as CustomEvent).detail.type;
     setType(type);
   }, []);
@@ -38,24 +38,24 @@ export const App = ({ type: initialType, testData }: AppProps) => {
 
   useEffect(() => {
     window.addEventListener(
-      'GENERIC_PAGE_TYPE_CHANGE',
-      handleGenericPageTypeChange
+      'LANDINGS_PAGE_TYPE_CHANGE',
+      handleLandingsPageTypeChange
     );
 
     return () => {
       window.removeEventListener(
-        'GENERIC_PAGE_TYPE_CHANGE',
-        handleGenericPageTypeChange
+        'LANDINGS_PAGE_TYPE_CHANGE',
+        handleLandingsPageTypeChange
       );
     };
-  }, [handleGenericPageTypeChange]);
+  }, [handleLandingsPageTypeChange]);
 
   return (
     <StoreProvider>
       <NotificationProvider>
         <ThemeProvider theme={theme}>
           <LayoutWithNavigation>
-            <GenericRoutes type={type} testData={testData} />
+            <LandingsRoutes type={type} testData={testData} />
           </LayoutWithNavigation>
         </ThemeProvider>
       </NotificationProvider>

@@ -26,10 +26,10 @@ export function Layout({
   return (
     <>
       <Header
-        title="Factory"
+        title="Access Management"
         pages={pages}
         buttons={buttons}
-        Logo={Logo}
+        // Logo={Logo}
         onLogoClick={onLogoClick}
       />
       {children}

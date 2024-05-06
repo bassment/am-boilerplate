@@ -4,20 +4,8 @@ import { actionTypes } from './constants';
 
 const getNotificationMessageByType = (type: NotificationEventType) => {
   switch (type) {
-    case 'ASSISTANT_STATUS_CHANGED':
-      return 'Your assistant is now connected';
-    case 'SUBSCIPTION_CANCELLED':
-      return 'Your subscription is now cancelled';
     case 'PASSWORD_CHANGED':
       return 'Password was changed successfully';
-    case 'USER_DELETED':
-      return 'User was deleted successfully';
-    case 'REQUIRES_RECENT_LOGIN_TO_DELETED_ACCOUNT':
-      return 'Please re-login to delete your account';
-    case 'EMAIL_VERIFICATION_ERROR':
-      return 'Please try to verify your email again';
-    case 'EMAIL_VERIFICATION_SUCCESS':
-      return "You've successfully verified your email";
 
     default:
       return 'Default notification message';

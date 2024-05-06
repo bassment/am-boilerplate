@@ -1,5 +1,13 @@
 export default {
-  homePage: {},
+  homePage: {
+    title: 'Home Page',
+  },
+  detailsPage: {
+    title: 'Details Page',
+  },
+  accountPage: {
+    title: 'Account Page',
+  },
   common: {
     signIn: {
       title: 'Log In',

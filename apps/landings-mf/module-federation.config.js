@@ -2,7 +2,7 @@
  * @type {import('@nx/devkit').ModuleFederationConfig}
  **/
 const moduleFederationConfig = {
-  name: 'generic-mf',
+  name: 'landings-mf',
   exposes: {
     './Module': './src/remote-entry.ts',
   },

@@ -7,7 +7,7 @@ npx create-nx-workspace@latest
 cd access-management
 
 npm install --save-dev @nx/react
-npx nx g @nx/react:host am-host --ssr --remotes=generic-mf,authorization-mf,account-mf
+npx nx g @nx/react:host am-host --ssr --remotes=landings-mf,authorization-mf,account-mf
 
 nx g @nx/react:library design-system
 nx g @nx/react:library shared

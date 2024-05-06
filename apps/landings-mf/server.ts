@@ -7,8 +7,8 @@ import { handleRequest } from './src/main.server';
 const port = process.env['PORT'] || 4201;
 const app = express();
 
-const browserDist = path.join(process.cwd(), 'dist/apps/generic-mf/browser');
-const serverDist = path.join(process.cwd(), 'dist/apps/generic-mf/server');
+const browserDist = path.join(process.cwd(), 'dist/apps/landings-mf/browser');
+const serverDist = path.join(process.cwd(), 'dist/apps/landings-mf/server');
 const indexPath = path.join(browserDist, 'index.html');
 
 app.use(cors());
